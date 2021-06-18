@@ -17,7 +17,7 @@ build: .built .push
 	docker build -t $(IMAGE) .
 	docker inspect -f '{{.Id}}' $(IMAGE) > $@
 
-.push
+.push:
 	docker push $(IMAGE)
 
 .PHONY: shell
