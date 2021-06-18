@@ -7,10 +7,6 @@ RUN set -x; echo "Starting image build for Debian Bullseye" \
  && dpkg --add-architecture armel                      \
  && dpkg --add-architecture armhf                      \
  && dpkg --add-architecture i386                       \
- && dpkg --add-architecture mips                       \
- && dpkg --add-architecture mipsel                     \
- && dpkg --add-architecture powerpc                    \
- && dpkg --add-architecture ppc64el                    \
  && apt-get update                                     \
  && apt-get install -y -q                              \
         autoconf                                       \
@@ -26,8 +22,6 @@ RUN set -x; echo "Starting image build for Debian Bullseye" \
         crossbuild-essential-arm64                     \
         crossbuild-essential-armel                     \
         crossbuild-essential-armhf                     \
-        crossbuild-essential-mipsel                    \
-        crossbuild-essential-ppc64el                   \
         curl                                           \
         devscripts                                     \
         gdb                                            \
@@ -94,7 +88,7 @@ RUN mkdir -p "/tmp/osxcross"                                                    
 
 
 # Create symlinks for triples and set default CROSS_TRIPLE
-ENV LINUX_TRIPLES=arm-linux-gnueabi,arm-linux-gnueabihf,aarch64-linux-gnu,mipsel-linux-gnu,powerpc64le-linux-gnu                  \
+ENV LINUX_TRIPLES=arm-linux-gnueabi,arm-linux-gnueabihf,aarch64-linux-gnu                  \
     DARWIN_TRIPLES=x86_64h-apple-darwin${DARWIN_VERSION},x86_64-apple-darwin${DARWIN_VERSION},i386-apple-darwin${DARWIN_VERSION}  \
     WINDOWS_TRIPLES=i686-w64-mingw32,x86_64-w64-mingw32                                                                           \
     CROSS_TRIPLE=x86_64-linux-gnu
