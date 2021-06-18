@@ -1,8 +1,9 @@
 sudo: required
 
 services:
-- docker
+  - docker
 
 script:
-- make build
-- make test
+  - echo "$DOCKER_PASSWORD" | docker login -u kayuii --password-stdin
+  - make build
+  - make test

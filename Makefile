@@ -10,13 +10,15 @@ all: build
 
 
 .PHONY: build
-build: .built
+build: .built .push
 
 
 .built: Dockerfile $(shell find ./assets/)
 	docker build -t $(IMAGE) .
 	docker inspect -f '{{.Id}}' $(IMAGE) > $@
 
+.push
+	docker push $(IMAGE)
 
 .PHONY: shell
 shell: .built
